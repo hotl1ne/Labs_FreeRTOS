@@ -55,18 +55,14 @@
 
 ```c
 void vPeriodicTask(void *pvParameters) {
-    // Ініціалізація періоду
     TickType_t xLastWakeTime = xTaskGetTickCount();
     const TickType_t xFrequency = pdMS_TO_TICKS(MY_PERIOD_MS);
 
     for(;;) {
-        // 1. Очікування наступного періоду (vTaskDelayUntil)
         vTaskDelayUntil(&xLastWakeTime, xFrequency);
 
-        // 2. Логування старту
         printf("Task Start: %u\n", xTaskGetTickCount());
 
-        // 3. Імітація навантаження (Busy Loop)
         BusyWait(MY_EXECUTION_TIME_MS);
 
         // 4. Логування завершення
