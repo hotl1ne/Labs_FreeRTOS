@@ -183,14 +183,10 @@ static int xKeyPressed = mainNO_KEY_PRESS_VALUE;
 
 /*-----------------------------------------------------------*/
 
-/* ... (весь попередній код include та defines залишається без змін) ... */
-
 int main(void)
 {
-    /* 1. Спочатку ініціалізуємо Heap (КРИТИЧНО ВАЖЛИВО для heap_5) */
     prvInitialiseHeap();
 
-    /* 2. Ініціалізація Trace (не обов'язково, але бажано для демо) */
     configASSERT(xTraceInitialize() == TRC_SUCCESS);
 
     printf(
@@ -201,7 +197,6 @@ int main(void)
 
     configASSERT(xTraceEnable(TRC_START) == TRC_SUCCESS);
 
-    /* 3. Налаштування переривань клавіатури (з оригінального демо) */
     vPortSetInterruptHandler(mainINTERRUPT_NUMBER_KEYBOARD, prvKeyboardInterruptHandler);
 
     xWindowsKeyboardInputThreadHandle = CreateThread(
@@ -214,13 +209,11 @@ int main(void)
 
     SetThreadAffinityMask(xWindowsKeyboardInputThreadHandle, ~0x01u);
 
-    /* 4. ТЕПЕР запускаємо вашу лабораторну */
     printf("\nStarting the lab2 (Variant 4).\r\n");
 
-    /* Виклик вашої функції */
     main_lab2();
 
-    /* Сюди код дійде тільки якщо планувальник впаде */
+    /* Г‘ГѕГ¤ГЁ ГЄГ®Г¤ Г¤ВіГ©Г¤ГҐ ГІВіГ«ГјГЄГЁ ГїГЄГ№Г® ГЇГ«Г Г­ГіГўГ Г«ГјГ­ГЁГЄ ГўГЇГ Г¤ГҐ */
     return 0;
 }
 /*-----------------------------------------------------------*/
